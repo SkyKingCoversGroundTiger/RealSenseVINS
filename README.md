@@ -17,6 +17,7 @@ rosbag play MH_01_easy.bag
 如果能得到结果说明配置是合理的
 
 # 让realsense在VINS架构上运行有两种办法，分别描述一下
+
 １　使用RTAB_MAP来直接运行
 这个运行方法不需要安装rtabmap，在安装完毕realsense之后的发布包里面就含有了
 1.1 Launch rtabmap:
@@ -48,7 +49,8 @@ image_topic: "/camera/color/image_raw"
 rostopic echo /camera/color/camera_info
 根据所得到的内参进行修改。但事实上这个内参准不准我也不清楚
 第三处，IMU到相机的变换矩阵，这里我根据注释的提示修改成2
-# Extrinsic parameter between IMU and Camera.
+
+Extrinsic parameter between IMU and Camera.
 estimate_extrinsic: 2   # 0  Have an accurate extrinsic parameters. We will trust the following imu^R_cam, imu^T_cam, don't change it.
                         # 1  Have an initial guess about extrinsic parameters. We will optimize around your initial guess.
                         # 2  Don't know anything about extrinsic parameters. You don't need to give R,T. We will try to calibrate it. Do some rotation movement at beginning.                        
@@ -60,6 +62,7 @@ gyr_n: 0.05         # gyroscope measurement noise standard deviation.     #0.05
 acc_w: 0.02         # accelerometer bias random work noise standard deviation.  #0.02
 gyr_w: 4.0e-5       # gyroscope bias random work noise standard deviation.     #4.0e-5
 g_norm: 9.80       # gravity magnitude
+
 第五处，是否需要在线估计同步时差，根据下面的建议这里选择不需要
 https://blog.csdn.net/weixin_44580210/article/details/89789416
 #unsynchronization parameters
